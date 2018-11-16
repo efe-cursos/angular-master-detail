@@ -4,7 +4,7 @@ import {Category} from './pages/categories/shared/category.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
 
-  createDb(reqInfo?: RequestInfo): {} | Observable<{}> | Promise<{}> {
+  createDb(): {} | Observable<{}> | Promise<{}> {
     const categories: Category[] = [
       {id: 1, name: 'Moradia', description: 'Pagamentos de Contas da Casa'},
       {id: 2, name: 'Saúde', description: 'Plano de Saúde e Remédios'},
