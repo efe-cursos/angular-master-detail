@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CategoryService} from '../shared/category.service';
+import {Category} from '../shared/category.model';
 
 @Component({
   selector: 'app-category-list',
@@ -7,12 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor() { }
+  categories: Category[] = [];
 
-  ngOnInit() {
+  constructor(private service: CategoryService) {
   }
 
-  deleteCategory(number: number) {
+  ngOnInit() {
+    this.service.getAll().subscribe(
+      categs => this.categories = categs,
+      () => console.log('Erro carregando a lista')
+    );
+  }
 
+  deleteCategory(category: Category) {
+    this.service.delete(category.id).subscribe(
+      () => this.categories = this.categories.filter(el => el !== category),
+      () => console.log('Erro removendo categoria')
+    );
   }
 }

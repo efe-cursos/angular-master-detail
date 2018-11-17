@@ -44,6 +44,7 @@
     "@types/jquery": "^3.3.22",
     "@types/node": "~8.9.4",
     "@types/popper.js": "^1.11.0",
+    "@types/toastr": "^2.1.35",
     "angular-in-memory-web-api": "^0.7.0",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
