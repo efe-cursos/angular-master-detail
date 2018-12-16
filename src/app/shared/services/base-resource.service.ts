@@ -62,7 +62,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     return this.jsonDataToResourceFn(jsonData);
   }
 
-  private handleError(error: any): Observable<any> {
+  protected handleError(error: any): Observable<any> {
     console.log('Erro na requisição -> ', error);
     return throwError(error);
   }

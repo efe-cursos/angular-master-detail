@@ -1,18 +1,13 @@
-<nav class="mb-2">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item active">Lançamentos</li>
-  </ol>
-</nav>
+<app-breadcrumb
+  [items]="[{text: 'Lançamentos'}]">
+</app-breadcrumb>
 
-<div class="row mb-2">
-  <div class="col-md">
-    <h1 class="h2 border-left pl-2">Lançamentos</h1>
-  </div>
-  <div class="col-md">
-    <a routerLink="new" class="btn btn-success float-right">+ Novo Lançamento</a>
-  </div>
-</div>
+<app-page-header
+  button-class="btn btn-success" button-link="new" button-text="+ Novo Lançamento"
+  page-title="Lançamentos">
+</app-page-header>
+
+<app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
 
 <table class="table table-hover">
   <thead>
@@ -24,7 +19,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let entry of entries">
+  <tr *ngFor="let entry of resources">
     <td>
       <strong>{{entry.name}}</strong><br>
       <small class="text-success">{{entry.date}} </small>
@@ -34,12 +29,13 @@
       {{entry.category.name}}
     </td>
     <td class="text-right">
-      <strong [ngClass]="{'text-success': entry.type === 'revenue', 'text-danger': entry.type === 'expense'}">{{entry.amount}}</strong><br>
+      <strong
+        [ngClass]="{'text-success': entry.type === 'revenue', 'text-danger': entry.type === 'expense'}">{{entry.amount}}</strong><br>
       <span class="badge badge-light">{{entry.paidText}}</span>
     </td>
     <td class="text-center">
       <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-      <button (click)="deleteEntry(entry)" class="btn btn-outline-danger btn-sm">Excluir</button>
+      <button (click)="deleteResource(entry)" class="btn btn-outline-danger btn-sm">Excluir</button>
     </td>
   </tr>
   </tbody>
